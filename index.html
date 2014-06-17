@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Javascript API Lookup App</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script type="text/javascript" src="javascripts/lib/jquery-2.1.1.min.js"></script>
     </head>
 
@@ -14,13 +14,34 @@
           <input type="text" id="search" />
         </div>
 
-        <div id="results">
-
+        <div id="results" class="text-left">
+          <ul>
+            <li>Method Name</li>
+          </ul>
         </div>
       </section>
 
-
-
-
     </body>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('#search').change(function() {
+            console.log($(this).val());
+            var methods = getProperties($(this).val());
+            console.log(methods);
+            render(methods);
+            });
+      });
+    
+    function getProperties(objName) {
+      return Object.getOwnPropertyNames(eval(objName).prototype).sort();
+    }
+
+    function render(methods) {
+      var ul = $("<ul>");
+      for(var i = 0; i < methods.length; i++) {
+        ul.append("<li>" + methods[i] + "</li>");
+      }
+      $('#results').html(ul);
+    }
+    </script>
   </html>
