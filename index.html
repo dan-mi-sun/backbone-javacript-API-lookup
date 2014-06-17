@@ -25,10 +25,13 @@
     <script type="text/javascript">
       $(document).ready(function() {
           $('#search').change(function() {
-            console.log($(this).val());
+            try {
             var methods = getProperties($(this).val());
-            console.log(methods);
             render(methods);
+            }
+            catch(e){
+              $('#results').html("No such object: " + $(this).val());
+            }
             });
       });
     
