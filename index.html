@@ -22,7 +22,9 @@
       </section>
 
     </body>
+
     <script type="text/javascript">
+    //Controller - Deciding what to do, brings together the model and the template, handles events
       $(document).ready(function() {
           $('#search').change(function() {
             try {
@@ -34,11 +36,13 @@
             }
             });
       });
-    
+   
+    //Model - What to display - where the data comes from
     function getProperties(objName) {
       return Object.getOwnPropertyNames(eval(objName).prototype).sort();
     }
 
+    //View - Presentation detail, templates
     function render(methods) {
       var ul = $("<ul>");
       for(var i = 0; i < methods.length; i++) {
