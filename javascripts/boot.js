@@ -1,3 +1,3 @@
 $(document).ready(function() {
-view = new app.views.ApiView();
+  var view = new app.views.ApiView();
 });
