@@ -6,6 +6,9 @@
     <script type="text/javascript" src="javascripts/lib/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="javascripts/lib/underscore-min.js"></script>
     <script type="text/javascript" src="javascripts/lib/backbone-min.js"></script>
+    <script type="text/javascript" src="javascripts/app.js"></script>
+    <script type="text/javascript" src="javascripts/views/api-view.js"></script>
+    <script type="text/javascript" src="javascripts/boot.js"></script>
     </head>
 
     <body class="text-center">
@@ -24,33 +27,4 @@
       </section>
 
     </body>
-
-    <script type="text/javascript">
-    //Controller - Deciding what to do, brings together the model and the template, handles events
-      $(document).ready(function() {
-          $('#search').change(function() {
-            try {
-            var methods = getProperties($(this).val());
-            render(methods);
-            }
-            catch(e){
-              $('#results').html("No such object: " + $(this).val());
-            }
-            });
-      });
-   
-    //Model - What to display - where the data comes from
-    function getProperties(objName) {
-      return Object.getOwnPropertyNames(eval(objName).prototype).sort();
-    }
-
-    //View - Presentation detail, templates
-    function render(methods) {
-      var ul = $("<ul>");
-      for(var i = 0; i < methods.length; i++) {
-        ul.append("<li>" + methods[i] + "</li>");
-      }
-      $('#results').html(ul);
-    }
-    </script>
   </html>
